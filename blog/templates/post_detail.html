@@ -1,0 +1,78 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>MOTD_DETAIL</title>
+	<style>
+	    @font-face {
+    font-family: 'GyeonggiBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal; 
+    }
+    body{
+        background-color:#F3DCD3;
+        font-family: 'GyeonggiBatang';
+        margin-top:3%;
+    }
+    h1{
+        text-align:center;
+        font-size:45px;
+    }
+    a{
+        display:inline-block;
+        text-decoration:none;
+        color:black;
+        width:80px;
+        height:40px;
+        background-color:black;
+        color:white;
+        padding:1%;
+        text-align:center;
+        margin-top:2%;
+    }
+    .btn{
+        display:flex;
+        justify-content:space-around;
+    }
+    .post{
+        margin:0 auto;
+        text-align:center;
+        background-color:#DBB1A1;
+        padding:3%;
+    }
+    .img{
+    }
+     *{
+        box-sizing: border-box;
+    }
+	    
+	</style>
+</head>
+<body>
+    <h1>MY POST</h1>
+    <div class="post">
+        {%if post.pub_date%}
+            {{post.pub_date}}
+        {%endif%}
+        {{post.category}}
+        <h1>{{post.title}}</h1>
+        <p>
+           작성자 {{post.writer}}<br><br><br>
+           EYES {{post.eyes}}<br><br>
+           LIP  {{post.lip}}<br><br>
+           FACE {{post.face}}
+            {%if post.image%}
+                <div class="img">
+                    <img src="{{post.image.url}}"  height=200>
+               </div>
+            {%endif%}
+           {{post.choice}}
+        </p>
+    </div>
+    <div class="btn">
+        <a href="{% url 'post_edit' index=post.pk %}">수정</a>
+        <a href="{% url 'home' %}">home</a>
+        <a href="{% url 'post_delete' pk=post.pk %}">삭제</a>
+    </div>
+</body>
+</html>
